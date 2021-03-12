@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import '../styles/index.css'
 
 // NOTE: Router can be accessed through this App Context or any Page routed
 
