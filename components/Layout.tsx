@@ -18,7 +18,7 @@ const layout = ({children, title = '...', fluid = true}: Props) => {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
         </Head>
 
-        <div className="flex flex-col min-h-screen bg-gray-100">
+        <div className="flex flex-col min-h-screen">
             <Container children={children ?? []} fluid={fluid} />
         </div>
     </>;
