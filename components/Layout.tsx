@@ -1,14 +1,13 @@
-import React, {ReactNode} from 'react';
+import React, {} from 'react';
 import Head from 'next/head';
 import Container from "./Container";
 
-type Props = {
-    children?: ReactNode
+type LayoutProps = {
     title?: string
     fluid?: boolean
 };
 
-const layout = ({children, title = '...', fluid = true}: Props) => {
+const Layout: React.FC<LayoutProps> = ({children, title = '...', fluid = true}) => {
 
     return <>
         <Head>
@@ -24,4 +23,4 @@ const layout = ({children, title = '...', fluid = true}: Props) => {
     </>;
 };
 
-export default layout;
+export default Layout;
