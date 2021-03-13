@@ -3,8 +3,10 @@ import axios from "axios";
 import NodeCache from 'node-cache'
 
 const cache = new NodeCache({
-    stdTTL: 20,
-    checkperiod: 120
+    stdTTL: 120,
+    deleteOnExpire: true,
+    checkperiod: 120,
+
 })
 
 export default async function weatherHandler(req: NextApiRequest, res: NextApiResponse) {
@@ -19,7 +21,8 @@ export default async function weatherHandler(req: NextApiRequest, res: NextApiRe
         case 'GET':
             // Get data from your database
             try {
-                const cacheKey = `${cityName}-${langCode}`;
+                const currentLang = langCode || 'en';
+                const cacheKey = `${cityName}-${currentLang}`;
                 let response: any;
                 if (cache.has(cacheKey)) {
                     response = cache.get(cacheKey)
@@ -33,11 +36,11 @@ export default async function weatherHandler(req: NextApiRequest, res: NextApiRe
                             appid: apiSecret,
                             q: cityName,
                             units: 'metric',
-                            lang: langCode || 'en'
+                            lang: currentLang
                         }
                     });
 
-                    const response = apiResponse.data;
+                    response = apiResponse.data;
 
                     cache.set(cacheKey, response);
                 }
