@@ -7,9 +7,11 @@ module.exports = (phase, { defaultConfig }) => {
     const shared = {
         serverRuntimeConfig: {
             api: {
-                googleMaps: process.env.GOOGLE_MAPS_API,
                 weather: process.env.WEATHER_API
             }
+        },
+        publicRuntimeConfig: {
+            googleMaps: process.env.GOOGLE_MAPS_API
         },
         ...defaultConfig
     }
