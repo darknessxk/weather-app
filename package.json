@@ -21,6 +21,7 @@
     "@koa/router": "^10.0.0",
     "@tailwindcss/forms": "^0.2.1",
     "axios": "^0.21.1",
+    "cachios": "^3.0.0",
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",
     "dotenv": "^8.2.0",
