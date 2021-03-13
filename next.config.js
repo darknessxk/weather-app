@@ -5,14 +5,6 @@ const compress = false;
 
 module.exports = (phase, { defaultConfig }) => {
     const shared = {
-        serverRuntimeConfig: {
-            api: {
-                weather: process.env.WEATHER_API
-            }
-        },
-        publicRuntimeConfig: {
-            googleMaps: process.env.GOOGLE_MAPS_API
-        },
         ...defaultConfig
     }
 
