@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux'
 import rootReducer from './RootReducer'
 
 export const store = configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: [] as const,
+    devTools: true
 })
 
 export type RootState = ReturnType<typeof store.getState>
