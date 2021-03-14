@@ -1,5 +1,4 @@
 import React, {useCallback} from "react";
-import axios from "axios";
 import { setLocation } from "redux/reducers/location";
 import Layout from '../components/Layout';
 import {useAppDispatch} from "../redux/hooks";
