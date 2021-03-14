@@ -1,10 +1,12 @@
 import React, {useCallback} from "react";
+import axios from "axios";
 import { setLocation } from "redux/reducers/location";
 import Layout from '../components/Layout';
-import Text from "../components/Text";
 import {useAppDispatch} from "../redux/store";
-import axios from "axios";
 import Tile from "../components/Tile";
+import Text from "../components/Text";
+import fetchUserIp from "../utils/fetchUserIp";
+import fetchIpLocation from "../utils/fetchIpLocation";
 
 const IndexPage = () => {
     const dispatch = useAppDispatch();
@@ -19,15 +21,8 @@ const IndexPage = () => {
             },
             async () => {
                 try {
-                    const apiResponse = await axios.request({
-                        url: 'https://api.my-ip.io/ip.json',
-                        method: 'GET'
-                    });
-
-                    const ipInfo = await axios.request({
-                        url: `http://ip-api.com/json/${apiResponse.data.ip}`,
-                        method: 'GET'
-                    });
+                    const apiResponse = (await fetchUserIp()).data;
+                    const ipInfo = (await fetchIpLocation(apiResponse.ip)).data;
 
                     dispatch(setLocation({
                         lat: ipInfo.data.lat,
@@ -47,7 +42,7 @@ const IndexPage = () => {
         <Layout title="Home">
             <main className="flex flex-row md:flex-col flex-grow h-full overflow-hidden subpixel-antialiased">
                 <Text className="text-center">
-                    Choose one option
+                    Choose how we get your location
                 </Text>
                 <div className="flex">
                     <Tile>
