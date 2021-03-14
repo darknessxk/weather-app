@@ -1,4 +1,4 @@
-# Builders Job Evaluation
+# Weather App
 
 > Project based into Next.js Typescript template created by darknessxk @ katsuhiro.gg
 
@@ -7,8 +7,6 @@
 Deploy using [Vercel](https://vercel.com):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/darknessxk/job-evaluation-builders)
-
-
 
 ## Getting Started
 
@@ -40,3 +38,38 @@ HTTP/2 secure server is listening to: 3001
 ```
 
 After you see `Listening to: [port number]` you will be able to navigate to the server pages
+
+
+
+
+## Environment
+
+There are a few files `.env.example` and `.env.local.example` that you can as your base env files
+
+Currently we use only 2 required env variables
+
+
+
+Meaning: 
+
+**\*** Means required
+
+
+
+File **.env.local**
+
+Variables
+
+* WEATHER_API (OpenWeather API Token) *
+* NEXT_PUBLIC_GOOGLE_MAPS_API (Google Maps Places API) *
+
+
+
+File **.env**
+
+Variables
+
+* DEFAULT_PORT (HTTP Port)
+* SECURE_PORT (HTTP/2 Secure port)
+* SERVER_CRT_KEY (Path to server certificate REQUIRED for secure port)
+* SERVER_CRT_PEM (Path to server pem certificate REQUIRED for secure port)
