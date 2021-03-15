@@ -23,7 +23,8 @@ We will be following this Git Flow pattern with strict rules for future commits
   * **MUST** be based into dev branch
   * **MUST** pull request to **dev** branch
 * **task/**
-  * **MUST** 
+  * **MUST** be based into its own feature or dev branch if it is a single task without a base feature
+  * **MUST** pull request to **feature** or **dev** depending on which one it is based
 
 ### Pull Requesting
 
