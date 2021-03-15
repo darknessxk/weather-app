@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import OneCall from "../../../api/open-weather/onecall";
+import OneCall from "../../../utils/api/open-weather/onecall";
 
 export default async function weatherHandler(req: NextApiRequest, res: NextApiResponse) {
     const {
