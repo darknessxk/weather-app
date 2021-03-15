@@ -1,17 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import axios from "axios";
-import NodeCache from 'node-cache'
-
-const cache = new NodeCache({
-    stdTTL: 120,
-    deleteOnExpire: true,
-    checkperiod: 120,
-
-})
+import Weather from "../../../api/open-weather/weather";
 
 export default async function weatherHandler(req: NextApiRequest, res: NextApiResponse) {
-    const apiSecret = process.env.WEATHER_API;
-
     const {
         query: { cityName, langCode },
         method,
@@ -19,37 +9,8 @@ export default async function weatherHandler(req: NextApiRequest, res: NextApiRe
 
     switch (method) {
         case 'GET':
-            // Get data from your database
-            try {
-                const currentLang = langCode || 'en';
-                const cacheKey = `${cityName}-${currentLang}`;
-                let response: any;
-                if (cache.has(cacheKey)) {
-                    response = cache.get(cacheKey)
-                }
-                else
-                {
-                    const apiResponse = await axios.request({
-                        method: 'GET',
-                        url: 'https://api.openweathermap.org/data/2.5/weather',
-                        params: {
-                            appid: apiSecret,
-                            q: cityName,
-                            units: 'metric',
-                            lang: currentLang
-                        }
-                    });
-
-                    response = apiResponse.data;
-
-                    cache.set(cacheKey, response);
-                }
-
-                res.status(200).json(response);
-            } catch (e) {
-                res.status(500).json(e);
-            }
-
+            const result = await Weather(cityName.toString(), langCode.toString());
+            res.status(result.status).json(result.data);
             break
         default:
             res.setHeader('Allow', ['GET'])
