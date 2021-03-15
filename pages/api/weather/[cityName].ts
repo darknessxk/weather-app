@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import Weather from "../../../api/open-weather/weather";
+import Weather from "../../../utils/api/open-weather/weather";
 
 export default async function weatherHandler(req: NextApiRequest, res: NextApiResponse) {
     const {
