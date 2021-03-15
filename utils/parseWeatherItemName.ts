@@ -15,11 +15,11 @@ const parseWeatherItemName = (name: string, value: string | number) => {
         case "alerts":
             return ["Alerts", "..."];
         case "dt":
-            return ["Time", value];
+            return ["Time", textFormat(value, "hours")];
         case "sunrise":
-            return ["Sunrise", value];
+            return ["Sunrise", textFormat(value, "hours")];
         case "sunset":
-            return ["Sunset", value];
+            return ["Sunset", textFormat(value, "hours")];
         case "temp":
             return ["Temperature", textFormat(value, "deg")];
         case "feels_like":
@@ -33,11 +33,13 @@ const parseWeatherItemName = (name: string, value: string | number) => {
         case "uvi":
             return ["UV Index", value];
         case "clouds":
-            return ["Clouds", value];
+            return ["Clouds", textFormat(value, "percentage")];
         case "visibility":
-            return ["Visibility", value];
+            return ["Visibility", textFormat(value, "meters")];
         case "wind_speed":
             return ["Wind Speed", textFormat(value, "kmh")];
+        case "wind_gust":
+            return ["Wind Gust", textFormat(value, "meters/s")];
         case "wind_deg":
             return ["Wind Direction", textFormat(value, "deg")];
         case "weather":
