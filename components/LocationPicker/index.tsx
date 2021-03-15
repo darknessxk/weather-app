@@ -21,7 +21,7 @@ const SuggestionItem = styled.li`
 `;
 
 const MainText = styled.p`
-    ${tw`text-lg font-semibold truncate w-80`};
+    ${tw`text-lg font-semibold truncate w-80 md:text-sm`};
 `
 
 const SmallText = styled.p`

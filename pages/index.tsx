@@ -8,6 +8,8 @@ import Text from "../components/Text";
 import fetchUserIp from "../utils/fetchUserIp";
 import fetchIpLocation from "../utils/fetchIpLocation";
 import LocationPicker from "../components/LocationPicker";
+import Title from "../components/Title";
+import ContentContainer from "../components/ContentContainer";
 
 const IndexPage = () => {
     const dispatch = useAppDispatch();
@@ -56,12 +58,12 @@ const IndexPage = () => {
 
     return (
         <Layout title="Home">
-            <main className="flex flex-row md:flex-col flex-grow h-full overflow-hidden subpixel-antialiased">
+            <ContentContainer>
                 {!showLocationInput ? (
                         <>
-                            <Text className="text-center">
+                            <Title className="text-center">
                                 Choose how we get your location
-                            </Text>
+                            </Title>
                             <div className="flex">
                                 <Tile onClick={() => autoLocation()}>
                                     <Text>Auto</Text>
@@ -78,7 +80,7 @@ const IndexPage = () => {
                         </div>
                     )
                 }
-            </main>
+            </ContentContainer>
         </Layout>
     );
 }

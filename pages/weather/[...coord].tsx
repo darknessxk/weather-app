@@ -1,4 +1,5 @@
 import React, {ReactNode, useEffect, useState} from "react";
+import { useRouter } from 'next/router'
 import Layout from '../../components/Layout';
 import Text from "../../components/Text";
 import OneCall from "../../api/open-weather/onecall";
@@ -7,6 +8,9 @@ import {OneCallResponse} from "../../api/open-weather/onecallresponse.type";
 import GeoDecoding from "../../api/google/geodecoding";
 import parseGeocodeName from "../../utils/parseGeocodeName";
 import WeatherItem from "../../components/WeatherItem";
+import Tile from "../../components/Tile";
+import Title from "../../components/Title";
+import ContentContainer from "../../components/ContentContainer";
 
 const WeatherPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     const {
@@ -16,6 +20,7 @@ const WeatherPage = (props: InferGetServerSidePropsType<typeof getServerSideProp
     } = props;
 
     const location = data.location;
+    const router = useRouter();
     const weather: OneCallResponse = data.weather;
 
     const [RenderItems, setItems] = useState<ReactNode>(null);
@@ -23,7 +28,7 @@ const WeatherPage = (props: InferGetServerSidePropsType<typeof getServerSideProp
         let renderItems = [];
 
         for (const [key, value] of Object.entries(weather.current)) {
-            if (key !== 'weather') {
+            if (!['weather', 'dt', 'rain', 'snow'].includes(key)) {
                 renderItems.push(<WeatherItem name={key} value={value.toString()} />)
             }
         }
@@ -35,14 +40,19 @@ const WeatherPage = (props: InferGetServerSidePropsType<typeof getServerSideProp
 
     return (
         <Layout title={`Weather for ${locationName}`}>
-            <main className="flex flex-row md:flex-col flex-grow h-full overflow-hidden subpixel-antialiased">
-                <Text className="text-center">
+            <ContentContainer>
+                <Title className="text-center">
                     {locationName}
-                </Text>
+                </Title>
                 <div className="flex flex-col">
                     {RenderItems}
+                    <Tile className="border-t border-gray-400" onClick={() => router.push('/')}>
+                        <Text>
+                            Select a new place
+                        </Text>
+                    </Tile>
                 </div>
-            </main>
+            </ContentContainer>
         </Layout>
     );
 }
