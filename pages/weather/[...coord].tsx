@@ -2,10 +2,10 @@ import React, {ReactNode, useEffect, useState} from "react";
 import { useRouter } from 'next/router'
 import Layout from '../../components/Layout';
 import Text from "../../components/Text";
-import OneCall from "../../api/open-weather/onecall";
+import OneCall from "../../utils/api/open-weather/onecall";
 import {GetServerSidePropsContext, InferGetServerSidePropsType} from "next";
-import {OneCallResponse} from "../../api/open-weather/onecallresponse.type";
-import GeoDecoding from "../../api/google/geodecoding";
+import {OneCallResponse} from "../../utils/api/open-weather/onecallresponse.type";
+import GeoDecoding from "../../utils/api/google/geodecoding";
 import parseGeocodeName from "../../utils/parseGeocodeName";
 import WeatherItem from "../../components/WeatherItem";
 import Tile from "../../components/Tile";

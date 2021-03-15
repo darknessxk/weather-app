@@ -1,5 +1,5 @@
 import axios from "axios";
-import cache from "../../cache";
+import cache from "../../../cache";
 import apiSecret from "./secret";
 import {OneCallResponse} from "./onecallresponse.type";
 
