@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import Weather from "../../../api/open-weather/weather";
+import OneCall from "../../../api/open-weather/onecall";
 
 export default async function weatherHandler(req: NextApiRequest, res: NextApiResponse) {
     const {
-        query: { cityName, langCode },
+        query: { coord },
         method,
     } = req
 
     switch (method) {
         case 'GET':
-            const result = await Weather(cityName.toString(), langCode.toString());
+            const result = await OneCall(coord[0], coord[1], (coord[2] || "en"));
             res.status(result.status).json(result.data);
             break
         default:
